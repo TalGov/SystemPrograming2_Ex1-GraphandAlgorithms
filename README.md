@@ -4,7 +4,7 @@ The project implements an undirected graph class using adjacency lists and an Al
 The project focusing on memory management in C++, the use of classes, constructors, destructors, objects, namespaces, and functions that return objects.
 
 In this project, data 
- structures are implemented: Priority Queue, Queue, and Union-Find, and no standard library data structures are used
+ structures are implemented: Priority Queue, Queue and Union-Find, and no standard library data structures are used
 ## Features
 The project includes two main classes and data structure classes:
 
