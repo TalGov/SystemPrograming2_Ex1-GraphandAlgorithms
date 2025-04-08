@@ -1,8 +1,13 @@
 # SystemPrograming2_Ex1 -- Graph & Algorithms
 ## Project Description
+The project implements an undirected graph class using adjacency lists and an Algorithms class, focusing on common graph algorithms such as Prim’s, Kruskal’s, Dijkstra’s, BFS, and DFS. 
+The project focusing on memory management in C++, the use of classes, constructors, destructors, objects, namespaces, and functions that return objects.
+
+In this project, data 
+ structures are implemented: Priority Queue, Queue, and Union-Find, and no standard library data structures are used
+## Features
 The project includes two main classes:
 
-## Features
 ### Algorithms:
 The class includes the most common algorithms for working with undirected graphs (Algorithms.hpp):
 
