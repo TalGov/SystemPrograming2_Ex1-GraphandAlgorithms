@@ -45,7 +45,7 @@ The project includes a `Makefile` with the following commands:
 - **`make valgrind`** – Runs a memory leak check using `valgrind`.
 - **`make clean`** – Cleans up all generated binaries and object files.
 
-## Installation
+## Usage
 To run the project locally:
 1. Clone the project (git clone).
 2. Run the necessary Makefile commands as needed.
