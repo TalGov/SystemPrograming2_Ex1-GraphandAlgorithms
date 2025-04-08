@@ -2,6 +2,7 @@
 ## Project Description
 The project includes two main classes:
 
+## Features
 ### Algorithms:
 The class includes the most common algorithms for working with undirected graphs (Algorithms.hpp):
 
