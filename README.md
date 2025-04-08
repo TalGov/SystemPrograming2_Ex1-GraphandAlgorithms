@@ -6,7 +6,7 @@ The project focusing on memory management in C++, the use of classes, constructo
 In this project, data 
  structures are implemented: Priority Queue, Queue, and Union-Find, and no standard library data structures are used
 ## Features
-The project includes two main classes:
+The project includes two main classes and data structure classes:
 
 ### Algorithms:
 The class includes the most common algorithms for working with undirected graphs (Algorithms.hpp):
@@ -23,7 +23,7 @@ Each graph is represented by a list of vertices.
 The class also includes structs for nodes (Node.hpp) and edges (Edge.hpp), allowing flexible and efficient management and operations on the graph.
 
 
-## Data Structures:
+### Data Structures:
 In this project, I did not use the standard libraries for data structures, so I implemented three  data structures:
 
 1. **Priority Queue:** implementation of a priority queue that stores vertices with associated weights and allows for retrieval of the vertex with the smallest weight (PriorityQueue.hpp).
