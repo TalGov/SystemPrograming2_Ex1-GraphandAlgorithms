@@ -29,3 +29,16 @@ In this project, I did not use the standard libraries for data structures, so I 
 1. **Priority Queue:** implementation of a priority queue that stores vertices with associated weights and allows for retrieval of the vertex with the smallest weight (PriorityQueue.hpp).
 2. **Queue:** A basic queue implementation for handling elements in a first-in, first-out (FIFO) manner (Queue.hpp).
 3. **Union-Find:** A data structure used for managing and merging disjoinsets sets (UnionFind.hpp).
+
+## Test Files
+The project includes comprehensive tests to validate the algorithms, the Graph class, the data structures, and possible edge cases.
+The project uses the doctest.hpp library for writing and running unit tests. 
+1. **Test File** - Test.cpp
+2. **Test Runner File** - TestMain.cpp
+
+## Makefile
+The project includes a `Makefile` with the following commands:
+- **`make Main`** – Compiles and runs the demonstration `main` file.
+- **`make test`** – Compiles and runs all tests using `doctest`.
+- **`make valgrind`** – Runs a memory leak check using `valgrind`.
+- **`make clean`** – Cleans up all generated binaries and object files.
