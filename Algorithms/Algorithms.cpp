@@ -6,38 +6,39 @@ namespace graph {
 
     Graph Algorithms::bfs(const Graph& g, int start)
     {
-        int numVertices = g.getNumVertices();
+        Queue q;
+        int numVer = g.getNumVertices();
 
-        if (numVertices == 0) {
-            std::cout << "Error: The graph is empty" << std::endl;
-            return Graph(0);
+        Graph bfsT(numVer);
+
+        if (numVer == 0) {
+            throw std::invalid_argument("The graph is empty");
         }
 
-        if (start < 0 || start >= numVertices) {
-            std::cout << "Error: Start vertex " << start << " is out of bounds" << std::endl;
-            return Graph(0);
+        if (start < 0 || start >= g.getNumVertices()) {
+            throw std::out_of_range("Vertex index out of range");
+
         }
 
-        Graph bfsT(numVertices);
-        bool* visited = new bool[numVertices];
+        bool* visited = new bool[numVer]();
+        visited[start] = true;
+        q.enqueue(start);
 
-        for (int i = 0; i < numVertices; ++i) {
+        for (int i = 0; i < numVer; ++i) {
             visited[i] = false;
         }
 
-        Queue queue;
-        visited[start] = true;
-        queue.enqueue(start);
-
-        while (!queue.isEmpty()) {
-            int current = queue.dequeue();
-
-            for (int v = 0; v < numVertices; ++v) {
+        while (!q.isEmpty())
+        {
+            int current = q.dequeue();
+            for (int v = 0 ; v < numVer ; v++)
+            {
                 int weight = g.getEdgeWeight(current, v);
-                if (weight != 0 && !visited[v]) {
+                if (weight != 0 && !visited[v])
+                {
                     visited[v] = true;
                     bfsT.addEdge(current, v, weight);
-                    queue.enqueue(v);
+                    q.enqueue(v);
                 }
             }
         }
@@ -65,18 +66,16 @@ namespace graph {
     Graph Algorithms::dfs(const Graph& g, int start)
     {
         int numVertices = g.getNumVertices();
+        Graph dfsT(numVertices);
 
         if (numVertices == 0) {
-            std::cout << "Error: The graph is empty" << std::endl;
-            return Graph(0);
+            throw std::invalid_argument("The graph is empty");
         }
 
         if (start < 0 || start >= numVertices) {
-            std::cout << "Error: Start vertex " << start << " is out of bounds" << std::endl;
-            return Graph(0);
+            throw std::out_of_range("Vertex index out of range");
         }
 
-        Graph dfsT(numVertices);
         bool* visited = new bool[numVertices];
         for (int i = 0; i < numVertices; ++i) {
             visited[i] = false;
@@ -95,22 +94,20 @@ namespace graph {
         Graph shortestPathTree(numVertices);
 
         if (numVertices == 0) {
-            std::cout << "Error: Graph is empty" << std::endl;
-            return shortestPathTree;
+            throw std::invalid_argument("The graph is empty");
         }
 
         if (src < 0 || src >= numVertices) {
-            std::cout << "Error: Source vertex is out of bounds" << std::endl;
-            return shortestPathTree;
+            throw std::out_of_range("Vertex index out of range");
         }
 
         int numEdges = 0;
         Edge* edges = g.getEdges(&numEdges);
         for (int i = 0; i < numEdges; ++i) {
             if (edges[i].weight < 0) {
-                std::cout << "Error: Graph contains negative edge weights" << std::endl;
                 delete[] edges;
-                return shortestPathTree;
+                throw std::invalid_argument("Graph contains negative edge weights");
+
             }
         }
 
@@ -167,48 +164,33 @@ namespace graph {
     Graph Algorithms::prim(const Graph& g)
     {
         int numVertices = g.getNumVertices();
+        Graph mst(numVertices);
 
         if (numVertices == 0) {
-            std::cout << "Error: Graph is empty" << std::endl;
-            return Graph(0);
+            throw std::invalid_argument("The graph is empty");
         }
 
         if (!g.isConnected()) {
-            std::cout << "Error: Graph is not connected" << std::endl;
-            return Graph(0);
+            throw std::runtime_error("Graph is disconnected");
         }
 
-        Graph mst(numVertices);
-
-        bool* inMST = new bool[numVertices];
         int* minWeight = new int[numVertices];
         int* parent = new int[numVertices];
 
         for (int i = 0; i < numVertices; ++i) {
-            inMST[i] = false;
             minWeight[i] = INT_MAX;
             parent[i] = -1;
         }
 
         minWeight[0] = 0;
 
-        for (int count = 0; count < numVertices - 1; ++count) {
-            int min = INT_MAX;
-            int u = -1;
+        PriorityQueue pq(numVertices);
+        for (int i = 0; i < numVertices; ++i) {
+            pq.push(i, minWeight[i]);
+        }
 
-            for (int v = 0; v < numVertices; ++v) {
-                if (!inMST[v] && minWeight[v] < min) {
-                    min = minWeight[v];
-                    u = v;
-                }
-            }
-
-            if (u == -1)
-            {
-                break;
-            }
-
-            inMST[u] = true;
+        while (!pq.isEmpty()) {
+            int u = pq.pop();
 
             int numEdges = 0;
             Edge* edges = g.getEdges(&numEdges);
@@ -218,12 +200,14 @@ namespace graph {
                 int dest = edges[i].dest;
                 int weight = edges[i].weight;
 
-                if (src == u && !inMST[dest] && weight < minWeight[dest]) {
+                if (src == u && pq.contains(dest) && weight < minWeight[dest]) {
                     minWeight[dest] = weight;
-                    parent[dest] = src;
-                } else if (dest == u && !inMST[src] && weight < minWeight[src]) {
+                    parent[dest] = u;
+                    pq.decreaseKey(dest, weight);
+                } else if (dest == u && pq.contains(src) && weight < minWeight[src]) {
                     minWeight[src] = weight;
-                    parent[src] = dest;
+                    parent[src] = u;
+                    pq.decreaseKey(src, weight);
                 }
             }
 
@@ -236,7 +220,6 @@ namespace graph {
             }
         }
 
-        delete[] inMST;
         delete[] minWeight;
         delete[] parent;
 
@@ -247,22 +230,20 @@ namespace graph {
     {
         int numVertices = g.getNumVertices();
         int numEdges = 0;
+        Graph mst(numVertices);
 
         if (numVertices == 0) {
-            std::cout << "Error: Empty graph\n";
-            return Graph(0);
+            throw std::invalid_argument("The graph is empty");
         }
 
         if (!g.isConnected()) {
-            std::cout << "Error: Graph is not connected.MST cannot be formed.\n";
-            return Graph(0);
+            throw std::runtime_error("Graph is disconnected");
         }
 
         Edge* edges = g.getEdges(&numEdges);
 
         if (numEdges == 0) {
-            std::cout << "Error: Graph has no edges\n";
-            return Graph(0);
+            throw std::invalid_argument("Graph has no edges");
         }
 
         //sort- bubble
@@ -278,7 +259,6 @@ namespace graph {
             }
         }
 
-        Graph mst(numVertices);
         UnionFind UF(numVertices);
 
         for (int i = 0; i < numEdges; ++i) {
@@ -294,5 +274,4 @@ namespace graph {
         delete[] edges;
         return mst;
     }
-
 }

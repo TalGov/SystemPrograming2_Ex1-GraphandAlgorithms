@@ -12,15 +12,15 @@ namespace graph {
 
     public:
         PriorityQueue(int maxSize);
-
         ~PriorityQueue();
 
         void push(int vertex, int weight);
-
         int pop();
-
         bool isEmpty() const;
+        void decreaseKey(int vertex, int newWeight);
+        bool contains(int vertex) const;
 
     };
+
 }
-#endif // PRIORITY_QUEUE_HPP
+#endif

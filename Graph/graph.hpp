@@ -3,11 +3,11 @@
 #define GRAPH_HPP
 
 #include <iostream>
-#include "node.hpp"
-#include "edge.hpp"
+#include <stdexcept>
+#include "Node.hpp"
+#include "Edge.hpp"
 
 namespace graph {
-
     class Graph {
 
     private:
@@ -17,7 +17,6 @@ namespace graph {
         bool removeEdgeFromList(int vertex, int target);
 
     public:
-
         Graph(int vertices);
         ~Graph();
 
@@ -33,5 +32,4 @@ namespace graph {
     };
 
 }
-
 #endif

@@ -2,7 +2,6 @@
 #ifndef NODE_HPP
 #define NODE_HPP
 
-
 namespace graph {
 
     struct Node {
@@ -19,5 +18,6 @@ namespace graph {
 
         NodeQueue(int info) : info(info), next(nullptr) {}
     };
+
 }
 #endif

@@ -23,7 +23,5 @@ namespace graph {
         static Graph prim(const graph::Graph& g);
         static Graph kruskal(const graph::Graph& g);
     };
-
 }
-
 #endif

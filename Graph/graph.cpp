@@ -1,10 +1,8 @@
 //talgov44@gmail.com
-#include <stdexcept>
 #include "graph.hpp"
 #include "../Algorithms/Algorithms.hpp"
 
 namespace graph {
-
 
     Graph::Graph(int vertices) : numVertices(vertices)
     {
@@ -34,45 +32,42 @@ namespace graph {
         delete[] adjList;
     }
 
-    bool Graph::addEdge(int src, int dest, int weight)
-    {
-        if (src == dest)
-        {
-            std::cout << "Cannot add an edge from a vertex to itself (" << src << ")" << std::endl;
-            return false;
+    bool Graph::addEdge(int src, int dest, int weight) {
+        if (src == dest) {
+            throw std::invalid_argument("Cannot add an edge from a vertex to itself");
+
         }
 
-        if (src < 0 || src >= numVertices || dest < 0 || dest >= numVertices)
-        {
-            std::cout << "Error: Source or destination vertex is out of range" << std::endl;
-            return false;
+        if (src < 0 || src >= numVertices || dest < 0 || dest >= numVertices) {
+            throw std::out_of_range("Vertex index out of range");
+        }
+        if(weight == 0){
+            throw std::invalid_argument("Weight cannot be zero");
         }
 
-        //Check if edge already exists
+        // Check if edge already exists
         Node* temp = adjList[src];
-
-        while (temp)
-        {
-            if (temp->vertex == dest)
-            {
-                std::cout << "Edge already exists between " << src << " and " << dest << std::endl;
-                return false;
+        while (temp) {
+            if (temp->vertex == dest) {
+                throw std::invalid_argument("Edge already exists");
             }
             temp = temp->next;
         }
 
-        //Add to src the new dest -in adjList.
+        // Add to src the new dest in adjList.
         Node* newNode = new Node(dest, weight);
         newNode->next = adjList[src];
         adjList[src] = newNode;
 
-        //Add to dest the src (undirected)
+        // Add to dest the new src (undirected edge)
         Node* newNode2 = new Node(src, weight);
         newNode2->next = adjList[dest];
         adjList[dest] = newNode2;
 
+
         return true;
     }
+
 
     bool Graph::removeEdgeFromList(int vertex, int target)
     {
@@ -102,34 +97,33 @@ namespace graph {
     {
         if (src == dest)
         {
-            std::cout << "Cannot add an edge from a vertex to itself (" << src << ")" << std::endl;
-            return false;
+            throw std::invalid_argument("Cannot add an edge from a vertex to itself");
         }
         if (src < 0 || src >= numVertices || dest < 0 || dest >= numVertices)
         {
-            std::cout << "Error: Source or destination vertex is out of range" << std::endl;
-            return false;
+            throw std::out_of_range("Vertex index out of range");
         }
 
         //remove src->dest
         bool removed = removeEdgeFromList(src, dest);
         if (!removed) {
-            std::cout << "Error: Edge does not exist between " << src << " and " << dest << "." << std::endl;
-            return false;
+            throw std::invalid_argument("Edge does not exist");
         }
 
         //remove dest->src
         removed = removeEdgeFromList(dest, src);
         if(!removed)
         {
-            std::cout << "Although the graph is directed, no edge exists between the destination and source." << std::endl;
-            return false;
+            throw std::invalid_argument("Edge does not exist");
         }
 
         return true;
     }
 
     void Graph::print_graph() const {
+        if (numVertices == 0) {
+            throw std::invalid_argument("The graph is empty");
+        }
 
         std::cout << "Adjacency List of the Graph:" << std::endl;
         for (int i = 0; i < numVertices; ++i) {
@@ -144,11 +138,13 @@ namespace graph {
     }
 
 
+
+
     int Graph::getEdgeWeight(int src, int dest) const {
+
         if (src < 0 || src >= numVertices || dest < 0 || dest >= numVertices)
         {
-            std::cout << "Error: Source or destination vertex is out of range" << std::endl;
-            return 0;
+            throw std::out_of_range("Vertex index out of range");
         }
 
         Node* temp = adjList[src];
@@ -160,7 +156,7 @@ namespace graph {
             temp = temp->next;
         }
 
-        std::cout << "No such edge found" << std::endl;
+//        std::cout << "Edge does not exist" << std::endl;
         return 0;
     }
 

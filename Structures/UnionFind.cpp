@@ -3,7 +3,8 @@
 
 namespace graph {
 
-    UnionFind::UnionFind(int size) {
+    UnionFind::UnionFind(int size)
+    {
         parent = new int[size];
         rank = new int[size];
 
@@ -40,5 +41,4 @@ namespace graph {
             rank[rootX]++;
         }
     }
-
 }

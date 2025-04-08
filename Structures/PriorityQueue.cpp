@@ -50,4 +50,24 @@ namespace graph {
     bool PriorityQueue::isEmpty() const {
         return size == 0;
     }
+
+    void PriorityQueue::decreaseKey(int vertex, int newWeight) {
+        for (int i = 0; i < size; ++i) {
+            if (vertices[i] == vertex) {
+                if (newWeight < weights[i]) {
+                    weights[i] = newWeight;
+                }
+                return;
+            }
+        }
+    }
+
+    bool PriorityQueue::contains(int vertex) const {
+        for (int i = 0; i < size; ++i) {
+            if (vertices[i] == vertex) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

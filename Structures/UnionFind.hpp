@@ -17,5 +17,4 @@ namespace graph {
     };
 
 }
-
-#endif // UNION_FIND_H
+#endif

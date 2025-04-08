@@ -18,5 +18,6 @@ namespace graph {
         bool isEmpty() const;
 
     };
+
 }
-#endif // QUEUE_H
+#endif

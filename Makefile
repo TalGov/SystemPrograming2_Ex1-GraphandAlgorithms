@@ -1,28 +1,33 @@
 #talgov44@gmail.com
-SRCS = main.cpp \
-       ../Graph/graph.cpp \
-       ../Graph/Node.cpp \
-       ../Algorithms/Algorithms.cpp \
-       ../Structures/Queue.cpp \
-       ../Structures/UnionFind.cpp \
-       ../Structures/PriorityQueue.cpp
 
-OBJS = $(SRCS:.cpp=.o)
+CXX = clang++
+CXXFLAGS = -Wall -g -std=c++11 -lstdc++
+VALGRIND_FLAGS = -v --leak-check=full --show-leak-kinds=all --error-exitcode=99
 
-CXX = g++
-CXXFLAGS = -Wall -std=c++11
+SRCS = Algorithms/Algorithms.cpp Graph/graph.cpp Structures/PriorityQueue.cpp Structures/Queue.cpp Structures/UnionFind.cpp
+# OBJS = $(SRCS:.cpp=.o)
+MAIN_SRC = main.cpp
+TEST_SRC = TestMain.cpp Test.cpp
 
-main: $(OBJS)
-	$(CXX) $(CXXFLAGS) $(OBJS) -o main
+Test: test
+	./test
+#	./$^
 
+all: main test
 
-test: $(OBJS)
-	# כאן תוכל להוסיף את הפקודות להרצת הבדיקות (הנחתי שאין לך כרגע קובץ טסטים)
+# main: main.o $(OBJS)
+main: main.cpp $(SRCS)
+	$(CXX) $(CXXFLAGS) -o $@ $^
 
-valgrind: main
-	valgrind --leak-check=full ./main
+test: $(SRCS) $(TEST_SRC)
+	$(CXX) $(CXXFLAGS) -o $@ $^
+
+valgrind: main_build test_build
+	valgrind --tool=memcheck $(VALGRIND_FLAGS) ./main_build 2>&1 | { egrep "lost| at " || true; }
+	valgrind --tool=memcheck $(VALGRIND_FLAGS) ./test_build 2>&1 | { egrep "lost| at " || true; }
 
 clean:
-	rm -f $(OBJS) main
+	rm -f $(OBJS) main_build test_build TestMain.o Test.o
 
-.PHONY: clean valgrind test main.o
+
+.PHONY: all clean valgrind Test
