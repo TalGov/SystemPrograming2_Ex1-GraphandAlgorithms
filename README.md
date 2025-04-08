@@ -9,7 +9,7 @@ In this project, data
 The project includes two main classes and data structure classes:
 
 ### Algorithms:
-The class includes the most common algorithms for working with undirected graphs (Algorithms.hpp):
+The class includes the most common algorithms for working with undirected graphs (`Algorithms.hpp`):
 
 - **Prim** – Algorithm for finding the Minimum Spanning Tree (MST) in an undirected graph.
 - **Kruskal** – Another algorithm for finding the Minimum Spanning Tree (MST) in an undirected graph.
@@ -18,23 +18,25 @@ The class includes the most common algorithms for working with undirected graphs
 - **DFS** - Depth-First Search : by going as deep as possible along each branch before backtracking.
 
 ### Graph:
-The class contains the implementation of the undirected graph itself using an adjacency list (graph.hpp). 
+The class contains the implementation of the undirected graph itself using an adjacency list (`graph.hpp`). 
 Each graph is represented by a list of vertices. 
-The class also includes structs for nodes (Node.hpp) and edges (Edge.hpp), allowing flexible and efficient management and operations on the graph.
+The class also includes structs for nodes (`Node.hpp`) and edges (`Edge.hpp`), allowing flexible and efficient management and operations on the graph.
 
 
 ### Data Structures:
 In this project, I did not use the standard libraries for data structures, so I implemented three  data structures:
 
-1. **Priority Queue:** implementation of a priority queue that stores vertices with associated weights and allows for retrieval of the vertex with the smallest weight (PriorityQueue.hpp).
-2. **Queue:** A basic queue implementation for handling elements in a first-in, first-out (FIFO) manner (Queue.hpp).
-3. **Union-Find:** A data structure used for managing and merging disjoinsets sets (UnionFind.hpp).
+1. **Priority Queue:** implementation of a priority queue that stores vertices with associated weights and allows for retrieval of the vertex with the smallest weight (`PriorityQueue.hpp`).
+2. **Queue:** A basic queue implementation for handling elements in a first-in, first-out (FIFO) manner (`Queue.hpp`).
+3. **Union-Find:** A data structure used for managing and merging disjoinsets sets (`UnionFind.hpp`).
 
+## Demo
+The project includes a demonstration file (`main.cpp`) that shows how to use the implemented algorithms and graph.
 ## Test Files
 The project includes comprehensive tests to validate the algorithms, the Graph class, the data structures, and possible edge cases.
 The project uses the doctest.hpp library for writing and running unit tests. 
-1. **Test File** - Test.cpp
-2. **Test Runner File** - TestMain.cpp
+1. **Test File** - `Test.cpp`
+2. **Test Runner File** - `TestMain.cpp`
 
 ## Makefile
 The project includes a `Makefile` with the following commands:
@@ -42,3 +44,8 @@ The project includes a `Makefile` with the following commands:
 - **`make test`** – Compiles and runs all tests using `doctest`.
 - **`make valgrind`** – Runs a memory leak check using `valgrind`.
 - **`make clean`** – Cleans up all generated binaries and object files.
+
+## Installation
+To run the project locally:
+1. Clone the project (git clone).
+2. Run the necessary Makefile commands as needed.
