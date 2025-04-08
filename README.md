@@ -1,4 +1,4 @@
-# SystemPrograming2_Ex1-Graph&Algorithms
+# SystemPrograming2_Ex1 -- Graph & Algorithms
 ## Project Description
 The project includes two main classes:
 
