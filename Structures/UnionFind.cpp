@@ -14,12 +14,14 @@ namespace graph {
         }
     }
 
-    UnionFind::~UnionFind() {
+    UnionFind::~UnionFind()
+    {
         delete[] parent;
         delete[] rank;
     }
 
-    int UnionFind::find(int x) {
+    int UnionFind::find(int x)
+    {
         if (parent[x] == -1) {
             return x;
         }

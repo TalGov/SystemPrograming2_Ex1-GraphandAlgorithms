@@ -14,7 +14,8 @@ namespace graph {
         delete[] weights;
     }
 
-    void PriorityQueue::push(int vertex, int weight) {
+    void PriorityQueue::push(int vertex, int weight)
+    {
         if (size >= maxSize) {return;}
 
         vertices[size] = vertex;

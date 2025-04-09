@@ -34,7 +34,7 @@ namespace graph {
 
     bool Graph::addEdge(int src, int dest, int weight) {
         if (src == dest) {
-            throw std::invalid_argument("Cannot add an edge from a vertex to itself");
+            throw std::invalid_argument("Can't add an edge from a vertex to itself");
 
         }
 
@@ -51,21 +51,19 @@ namespace graph {
             if (temp->vertex == dest) {
                 std::cout << "The edge already exists from vertex " << src << " to vertex " << dest << std::endl;
                 return false;
-               // throw std::invalid_argument("Edge already exists");
             }
             temp = temp->next;
         }
 
-        // Add to src the new dest in adjList.
+        //Add to src the new dest in adjList.
         Node* newNode = new Node(dest, weight);
         newNode->next = adjList[src];
         adjList[src] = newNode;
 
-        // Add to dest the new src (undirected edge)
+        //Add to dest the new src (undirected edge)
         Node* newNode2 = new Node(src, weight);
         newNode2->next = adjList[dest];
         adjList[dest] = newNode2;
-
 
         return true;
     }
@@ -99,7 +97,7 @@ namespace graph {
     {
         if (src == dest)
         {
-            throw std::invalid_argument("Cannot add an edge from a vertex to itself");
+            throw std::invalid_argument("Can't add an edge from a vertex to itself");
         }
         if (src < 0 || src >= numVertices || dest < 0 || dest >= numVertices)
         {
@@ -139,9 +137,6 @@ namespace graph {
         }
     }
 
-
-
-
     int Graph::getEdgeWeight(int src, int dest) const {
 
         if (src < 0 || src >= numVertices || dest < 0 || dest >= numVertices)
@@ -158,7 +153,6 @@ namespace graph {
             temp = temp->next;
         }
 
-//        std::cout << "Edge does not exist" << std::endl;
         return 0;
     }
 

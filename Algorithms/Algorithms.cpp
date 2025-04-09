@@ -1,4 +1,5 @@
 //talgov44@gmail.com
+
 #include "Algorithms.hpp"
 #include <climits>
 
@@ -157,7 +158,8 @@ namespace graph {
         return shortestPathTree;
     }
 
-    Graph Algorithms::prim(const Graph &g) {
+    Graph Algorithms::prim(const Graph &g)
+    {
         int numVertices = g.getNumVertices();
         Graph mst(numVertices);
 

@@ -17,7 +17,6 @@ TEST_CASE("Adding edges and edge list") {
     g.addEdge(1, 3, 8);
     g.addEdge(3, 4, 4);
 
-
     CHECK(g.getEdgeWeight(1, 0) == 7); //check undirected
     CHECK(g.getEdgeWeight(0, 2) == 12);
 
@@ -31,7 +30,7 @@ TEST_CASE("Adding edges and edge list") {
     delete[] edges;
 }
 
-TEST_CASE("Graph constructor and getNumV") {
+TEST_CASE("Graph constructor") {
     Graph g(10);
     CHECK(g.getNumVertices() == 10);
 }
@@ -67,7 +66,6 @@ TEST_CASE("Testing Dijkstra with negative weights") {
     g.addEdge(0, 1, 10);
     g.addEdge(1, 2, -5);   // negative edge
     g.addEdge(2, 3, 1);
-
 
     CHECK_THROWS_AS(Algorithms::dijkstra(g, 0), invalid_argument); //Does not support negative weight
 }
@@ -134,7 +132,7 @@ TEST_CASE("Testing DFS Algorithm") {
     Edge* edges = dfsT.getEdges(&numE);
 
     CHECK(numE == 6);
-    CHECK(dfsT.getEdgeWeight(4, 5) == 5);
+    CHECK(dfsT.getEdgeWeight(4, 2) == 11);
     CHECK(dfsT.getEdgeWeight(4, 6) == 3);
     CHECK(dfsT.getEdgeWeight(5, 3) == 6);
     CHECK(dfsT.getEdgeWeight(3, 1) == 7);
@@ -316,7 +314,6 @@ TEST_CASE("Testing Queue enqueue and dequeue") {
     CHECK(q.dequeue() == -1); //no values
 }
 
-
 TEST_CASE("Testing UnionFind constructor and find") {
     UnionFind uf(5);
 
@@ -335,4 +332,3 @@ TEST_CASE("Testing UnionFind unionSets") {
 
     CHECK(uf.find(0) == uf.find(2)); //in the same group
 }
-

@@ -41,6 +41,7 @@ int main() {
 
         kruskalTree.removeEdge(0,2);
 
+        std::cout << "kruskal after remove edge 0-2: " << std::endl;
         kruskalTree.print_graph();
 
         int numV = kruskalTree.getNumVertices();
@@ -52,7 +53,7 @@ int main() {
         int numEdges = 0;
         Edge* edges = primTree.getEdges(&numEdges);
 
-        std::cout << "Number of edges: " << numEdges << std::endl;
+        std::cout << "Number of edges in Prim's algo: " << numEdges << std::endl;
         for (int i = 0; i < numEdges; ++i) {
             std::cout << "Edge from " << edges[i].src << " to " << edges[i].dest
                       << " with weight: " << edges[i].weight << std::endl;
@@ -63,8 +64,10 @@ int main() {
 
     } catch (const std::invalid_argument& e) {
         std::cout << "Invalid argument error: " << e.what() << std::endl;
+
     } catch (const std::out_of_range& e) {
         std::cout << "Out of range error: " << e.what() << std::endl;
+
     }catch (const std::runtime_error& e) {
         std::cout << "Runtime error: " << e.what() << std::endl;
     }

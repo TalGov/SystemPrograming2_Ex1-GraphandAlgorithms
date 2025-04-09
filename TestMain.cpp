@@ -35,7 +35,6 @@ struct ReporterCounter : public ConsoleReporter
 
 REGISTER_REPORTER("counter", 1, ReporterCounter);
 
-
 int main()
 {
     Context context;

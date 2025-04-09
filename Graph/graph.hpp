@@ -25,11 +25,9 @@ namespace graph {
         void print_graph() const;
 
         bool isConnected() const;
-
         int getNumVertices() const {return numVertices;};
         int getEdgeWeight(int src, int dest) const;
         Edge* getEdges(int* numOfEdge) const;
     };
-
 }
 #endif

@@ -3,7 +3,9 @@
 #define PRIORITY_QUEUE_HPP
 
 namespace graph {
+
     class PriorityQueue {
+
     private:
         int maxSize;
         int size;

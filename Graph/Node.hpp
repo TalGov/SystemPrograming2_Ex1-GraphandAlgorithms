@@ -18,6 +18,5 @@ namespace graph {
 
         NodeQueue(int info) : info(info), next(nullptr) {}
     };
-
 }
 #endif

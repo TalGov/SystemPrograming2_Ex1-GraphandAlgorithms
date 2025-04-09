@@ -12,12 +12,11 @@ namespace graph {
 
     public:
         Queue() : head(nullptr), tail(nullptr) {}
-
+        ~Queue();
         void enqueue(int value);
         int dequeue();
         bool isEmpty() const;
 
     };
-
 }
 #endif

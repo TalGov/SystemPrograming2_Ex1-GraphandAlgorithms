@@ -14,6 +14,12 @@ namespace graph {
             tail = newNode;
         }
     }
+    Queue::~Queue(){
+        while (!isEmpty())
+        {
+            dequeue();
+        }
+    }
 
     int Queue::dequeue() {
         if (!head) {

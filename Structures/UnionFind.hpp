@@ -5,6 +5,7 @@
 namespace graph {
 
     class UnionFind {
+
     private:
         int* parent;
         int* rank;
@@ -12,6 +13,7 @@ namespace graph {
     public:
         UnionFind(int size);
         ~UnionFind();
+
         int find(int x);
         void unionSets(int x, int y);
     };
