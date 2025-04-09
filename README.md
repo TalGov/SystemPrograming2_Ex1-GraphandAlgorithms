@@ -41,7 +41,7 @@ The project uses the doctest.hpp library for writing and running unit tests.
 ## Makefile
 The project includes a `Makefile` with the following commands:
 - **`make all`** 
-- **`make Main`** 
+- **`make main`** 
 - **`make test`** 
 - **`make valgrind`** 
 - **`make clean`** 
