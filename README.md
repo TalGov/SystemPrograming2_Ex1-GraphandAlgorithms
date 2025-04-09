@@ -19,7 +19,7 @@ The class includes the most common algorithms for working with undirected graphs
 
 ### Graph:
 The class contains the implementation of the undirected graph itself using an adjacency list (`graph.hpp`). 
-Each graph is represented by a list of vertices. 
+Each graph is represented by a list of vertices. An edge that does not exist between vertices will return 0.
 The class also includes structs for nodes (`Node.hpp`) and edges (`Edge.hpp`), allowing flexible and efficient management and operations on the graph.
 
 
@@ -40,10 +40,11 @@ The project uses the doctest.hpp library for writing and running unit tests.
 
 ## Makefile
 The project includes a `Makefile` with the following commands:
-- **`make Main`** – Compiles and runs the demonstration `main` file.
-- **`make test`** – Compiles and runs all tests using `doctest`.
-- **`make valgrind`** – Runs a memory leak check using `valgrind`.
-- **`make clean`** – Cleans up all generated binaries and object files.
+- **`make all`** 
+- **`make Main`** 
+- **`make test`** 
+- **`make valgrind`** 
+- **`make clean`** 
 
 ## Usage
 To run the project locally:
