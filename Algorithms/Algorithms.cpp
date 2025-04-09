@@ -4,8 +4,7 @@
 
 namespace graph {
 
-    Graph Algorithms::bfs(const Graph& g, int start)
-    {
+    Graph Algorithms::bfs(const Graph &g, int start) {
         Queue q;
         int numVer = g.getNumVertices();
 
@@ -20,7 +19,7 @@ namespace graph {
 
         }
 
-        bool* visited = new bool[numVer]();
+        bool *visited = new bool[numVer]();
         visited[start] = true;
         q.enqueue(start);
 
@@ -28,14 +27,11 @@ namespace graph {
             visited[i] = false;
         }
 
-        while (!q.isEmpty())
-        {
+        while (!q.isEmpty()) {
             int current = q.dequeue();
-            for (int v = 0 ; v < numVer ; v++)
-            {
+            for (int v = 0; v < numVer; v++) {
                 int weight = g.getEdgeWeight(current, v);
-                if (weight != 0 && !visited[v])
-                {
+                if (weight != 0 && !visited[v]) {
                     visited[v] = true;
                     bfsT.addEdge(current, v, weight);
                     q.enqueue(v);
@@ -46,6 +42,7 @@ namespace graph {
         delete[] visited;
         return bfsT;
     }
+
 
     void Algorithms::dfsHelper(const Graph& g, Graph& dfsT, bool* visited, int current)
     {
@@ -88,8 +85,7 @@ namespace graph {
     }
 
 
-    Graph Algorithms::dijkstra(const Graph& g, int src)
-    {
+    Graph Algorithms::dijkstra(const Graph &g, int src) {
         int numVertices = g.getNumVertices();
         Graph shortestPathTree(numVertices);
 
@@ -102,7 +98,7 @@ namespace graph {
         }
 
         int numEdges = 0;
-        Edge* edges = g.getEdges(&numEdges);
+        Edge *edges = g.getEdges(&numEdges);
         for (int i = 0; i < numEdges; ++i) {
             if (edges[i].weight < 0) {
                 delete[] edges;
@@ -111,9 +107,9 @@ namespace graph {
             }
         }
 
-        int* dist = new int[numVertices];
-        int* parent = new int[numVertices];
-        bool* visited = new bool[numVertices];
+        int *dist = new int[numVertices];
+        int *parent = new int[numVertices];
+        bool *visited = new bool[numVertices];
 
         for (int i = 0; i < numVertices; ++i) {
             dist[i] = INT_MAX;
@@ -161,8 +157,7 @@ namespace graph {
         return shortestPathTree;
     }
 
-    Graph Algorithms::prim(const Graph& g)
-    {
+    Graph Algorithms::prim(const Graph &g) {
         int numVertices = g.getNumVertices();
         Graph mst(numVertices);
 
@@ -174,8 +169,8 @@ namespace graph {
             throw std::runtime_error("Graph is disconnected");
         }
 
-        int* minWeight = new int[numVertices];
-        int* parent = new int[numVertices];
+        int *minWeight = new int[numVertices];
+        int *parent = new int[numVertices];
 
         for (int i = 0; i < numVertices; ++i) {
             minWeight[i] = INT_MAX;
@@ -193,7 +188,7 @@ namespace graph {
             int u = pq.pop();
 
             int numEdges = 0;
-            Edge* edges = g.getEdges(&numEdges);
+            Edge *edges = g.getEdges(&numEdges);
 
             for (int i = 0; i < numEdges; ++i) {
                 int src = edges[i].src;
@@ -226,8 +221,7 @@ namespace graph {
         return mst;
     }
 
-    Graph Algorithms::kruskal(const Graph& g)
-    {
+    Graph Algorithms::kruskal(const Graph &g) {
         int numVertices = g.getNumVertices();
         int numEdges = 0;
         Graph mst(numVertices);
@@ -240,17 +234,15 @@ namespace graph {
             throw std::runtime_error("Graph is disconnected");
         }
 
-        Edge* edges = g.getEdges(&numEdges);
+        Edge *edges = g.getEdges(&numEdges);
 
         if (numEdges == 0) {
             throw std::invalid_argument("Graph has no edges");
         }
 
         //sort- bubble
-        for (int i = 0; i < numEdges - 1; ++i)
-        {
-            for (int j = 0; j < numEdges - i - 1; ++j)
-            {
+        for (int i = 0; i < numEdges - 1; ++i) {
+            for (int j = 0; j < numEdges - i - 1; ++j) {
                 if (edges[j].weight > edges[j + 1].weight) {
                     Edge temp = edges[j];
                     edges[j] = edges[j + 1];
@@ -274,4 +266,5 @@ namespace graph {
         delete[] edges;
         return mst;
     }
+
 }

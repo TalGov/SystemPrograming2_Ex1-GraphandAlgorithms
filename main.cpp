@@ -58,6 +58,8 @@ int main() {
                       << " with weight: " << edges[i].weight << std::endl;
         }
 
+        delete[] edges;
+
 
     } catch (const std::invalid_argument& e) {
         std::cout << "Invalid argument error: " << e.what() << std::endl;

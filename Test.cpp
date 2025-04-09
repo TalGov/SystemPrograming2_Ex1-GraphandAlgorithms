@@ -40,14 +40,12 @@ TEST_CASE("Adding existing edges and invalid edges") {
     Graph g(3);
     CHECK( g.addEdge(0, 1, 5) == true);
 
-    CHECK_THROWS_AS(g.addEdge(0, 1, 5), invalid_argument); //check already exist
+    CHECK(g.addEdge(0, 1, 5) == false); //check already exist
 
     CHECK(g.getEdgeWeight(0, 1) == 5);
 
-    g.addEdge(0, 3, 10);
     CHECK_THROWS_AS(g.addEdge(0, 3, 10),out_of_range); //out of bound- vertex 3
 
-    g.addEdge(0, 0, 5);
     CHECK_THROWS_AS(g.addEdge(0, 0, 5),invalid_argument); //edge from src=dest
 }
 
@@ -337,3 +335,4 @@ TEST_CASE("Testing UnionFind unionSets") {
 
     CHECK(uf.find(0) == uf.find(2)); //in the same group
 }
+

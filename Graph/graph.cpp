@@ -49,7 +49,9 @@ namespace graph {
         Node* temp = adjList[src];
         while (temp) {
             if (temp->vertex == dest) {
-                throw std::invalid_argument("Edge already exists");
+                std::cout << "The edge already exists from vertex " << src << " to vertex " << dest << std::endl;
+                return false;
+               // throw std::invalid_argument("Edge already exists");
             }
             temp = temp->next;
         }
@@ -205,9 +207,17 @@ namespace graph {
 
     bool Graph::isConnected() const
     {
+        int numE;
         Graph visitedGraph = Algorithms::dfs(*this, 0);
+        Edge* edges = visitedGraph.getEdges(&numE);
 
-        return visitedGraph.getNumVertices() == numVertices;
+        if(numE >= visitedGraph.getNumVertices()-1)
+        {
+            delete[] edges;
+            return true;
+        }
+        delete[] edges;
+        return false;
 
     }
 }

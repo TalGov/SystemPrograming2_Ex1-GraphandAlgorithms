@@ -6,7 +6,7 @@ namespace graph {
 
     void Queue::enqueue(int value)
     {
-        NodeQueue *newNode = new NodeQueue(value);
+        auto *newNode = new NodeQueue(value);
         if (!tail) {
             head = tail = newNode;
         } else {
